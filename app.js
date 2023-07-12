@@ -5,9 +5,12 @@ const mongoose=require("mongoose");
 const date=require(__dirname+"/date.js");
 const app=express();
 const _=require("lodash");
+require("dotenv").config();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"))
-mongoose.connect("mongodb+srv://armaansharma1701:T3M1N4TOR@cluster0.a5szzkn.mongodb.net/todolistDB",{useNewUrlParser:true})   //connection to mongoDB ATLAS
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING,{
+    useNewUrlParser:true
+})   //connection to mongoDB ATLAS
 
 app.set('view engine', 'ejs');   //initializing ejs
 const itemsSchema=new mongoose.Schema({
