@@ -1,29 +1,22 @@
 <%- include("header") %>      <!--includes the html layout from the header.ejs-->
-    
+
     <div class="box" id="heading">
         <h1><%= ListTitle %></h1>
     </div>
     <div class="box">
         <% newListItems.forEach(function(item){  %>
-            <form action="/delete" method="post">      <!--new form and route to delete elements when you check them off-->
+            <form action="/delete" method="post">      
             <div class="item">
-                <input type="checkbox" name="check" value="<%=item._id%>"onChange="this.form.submit()">   <!--this line of code submits a form when the checkbox is checked 
-                                because we do not want a button of type submit over here.It does the same job as a button of type submit. The value
-                            gives the item id of the element that is checked-->
+                <input type="checkbox" name="check" value="<%=item._id%>"onChange="this.form.submit()">  
                 <p><%= item.name %></p>
             </div>
             <input type="hidden" name="listName" value="<%= ListTitle %>"></input>
             </form>
         <%})%>
-        <!-- <% for(i=0;i<newListItems.length;i++){      %>
-            <div class="item">
-                <input type="checkbox">
-                <p><%= newListItems[i].name %></p>
-            </div>
-        <%}%> -->
+        
         <form class="item" action="/" method="post">
             <input type="text" name="NewItem" placeholder="New Item" autocomplete="off">
-            <button type="submit" name="list" value="<%= ListTitle %>">+</button>    <!--giving the button a value to differentiate between different to do lists-->
+            <button type="submit" name="list" value="<%= ListTitle %>">+</button>   
         </form>
     </div>
 <%- include("footer") %>        <!--includes the footer layout from the footer.ejs-->
